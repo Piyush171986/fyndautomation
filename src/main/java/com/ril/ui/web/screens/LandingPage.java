@@ -19,6 +19,9 @@ public class LandingPage {
         this.driver.findElement(By.xpath("//h3[contains(text(),\""+segment.toLowerCase()+"\")]")).click();
         return this;
     }
-
+    public LandingPage clickOnContinueButton() {
+        this.driver.findElement(By.xpath("//button[@type='button']")).click();
+        return this;
+    }
 
 }

@@ -11,14 +11,25 @@ public class LoginPage {
         driver = Driver.driverWrapper.getDriver();
     }
 
-    public LoginPage clickOnLoginRegisterButton() {
-        this.driver.findElement(By.xpath("(//span[contains(text(),'Login / Register')])[1]")).click(); //this for golbal variable
-        return this;
-    }
-    public LoginPage clickOnSegment(String segment) {
-        this.driver.findElement(By.xpath("//h3[contains(text(),\""+segment.toLowerCase()+"\")]")).click();
+
+
+    public LoginPage clickOnPasswordTab() {
+        this.driver.findElement(By.xpath("//div[contains(text(),'Password')]")).click();
         return this;
     }
 
+    public LoginPage enterUserName(String username ) {
+        this.driver.findElement(By.xpath("//input[@id='username']")).sendKeys(username);
+        return this;
+    }
+
+    public LoginPage enterPassword(String password ) {
+        this.driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+        return this;
+    }
+    public LoginPage clickOnSignInButton( ) {
+        this.driver.findElement(By.xpath("//button//span[text()='Sign in']")).click();
+        return this;
+    }
 
 }
