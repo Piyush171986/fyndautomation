@@ -1,6 +1,6 @@
-package com.ril.ui.web.screens;
+package com.ril.web.screens;
 
-import com.ril.ui.common.Driver;
+import com.ril.common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -26,8 +26,10 @@ public class DashboardPage {
        } else {
            return false;
        }
-
-
+    }
+    public Boolean isInvalidPincode() {
+        return this.driver.findElement(By.xpath("//span[normalize-space()='Pincode is not Serviceable']")).isDisplayed();
 
     }
+
 }

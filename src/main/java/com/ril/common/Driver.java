@@ -1,4 +1,4 @@
-package com.ril.ui.common;
+package com.ril.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
