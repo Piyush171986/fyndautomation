@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 public class LoginSteps {
 
     @Given("Login with a Merchant")
-    public void loginWithAMerchant() {
+    public void loginWithAMerchant() throws InterruptedException {
         new Login().loginWithMerchant();   // step defination will alwys call BL calls and not screens
     }
     @Then("Merchant should be looged in")

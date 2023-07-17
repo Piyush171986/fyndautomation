@@ -1,40 +1,26 @@
 package com.ril.web.screens;
 
-import com.ril.common.Driver;
-import com.ril.common.Environment;
-import org.json.JSONObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.ril.web.common.Page;
 
-public class LoginPage {
-
-    private WebDriver driver;
-    private JSONObject env = Environment.envVariables.getEnvData().getJSONObject("sit").getJSONObject("merchant");
-    private String segment = System.getProperty("segment");
-    public LoginPage() {
-        driver = Driver.driverWrapper.getDriver();
-    }
-
-
-
+public class LoginPage extends Page {
     public LoginPage clickOnPasswordTab() {
-        this.driver.findElement(By.xpath("//div[contains(text(),'Password')]")).click();
+        driver.findElement("//div[contains(text(),'Password')]").click();
         return this;
     }
 
-    public LoginPage enterUserName(String username ) {
-        username = env.getJSONObject(segment).getString("mobileNumber");
-        this.driver.findElement(By.xpath("//input[@id='username']")).sendKeys(username);
+    public LoginPage enterUserName(String username) {
+        username = merchant.get("mobileNumber");
+        driver.findElement("//input[@id='username']").sendKeys(username);
         return this;
     }
 
     public LoginPage enterPassword(String password ) {
-        password = env.getJSONObject(segment).getString("password");
-        this.driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+        password = merchant.get("password");
+        driver.findElement("//input[@id='password']").sendKeys(password);
         return this;
     }
     public LoginPage clickOnSignInButton( ) {
-        this.driver.findElement(By.xpath("//button//span[text()='Sign in']")).click();
+        driver.findElement("//button//span[text()='Sign in']").click();
         return this;
     }
 

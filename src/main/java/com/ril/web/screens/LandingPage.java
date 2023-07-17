@@ -1,27 +1,19 @@
 package com.ril.web.screens;
 
-import com.ril.common.Driver;
-import com.ril.common.Environment;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.ril.web.common.Page;
 
-public class LandingPage {
-
-    private WebDriver driver;
-    public LandingPage() {
-        driver = Driver.driverWrapper.getDriver();
-    }
-
+public class LandingPage extends Page {
     public LandingPage clickOnLoginRegisterButton() {
-        this.driver.findElement(By.xpath("(//span[contains(text(),'Login / Register')])[1]")).click(); //this for golbal variable
+        driver.findElement("//div[@class='main-popup-container']").isDisplayed();
+        driver.click("//span[contains(text(),'Login / Register')]");
         return this;
     }
     public LandingPage clickOnSegment() {
-        this.driver.findElement(By.xpath("//h3[contains(text(),\""+ Environment.envVariables.getSegment().toLowerCase()+"\")]")).click();
+        driver.click("//h3[contains(text(),\""+ segment.toLowerCase()+"\")]");
         return this;
     }
     public LandingPage clickOnContinueButton() {
-        this.driver.findElement(By.xpath("//button[@type='button']")).click();
+        driver.click("//button[@type='button']");
         return this;
     }
 
