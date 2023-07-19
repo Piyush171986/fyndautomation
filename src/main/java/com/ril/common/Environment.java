@@ -1,30 +1,34 @@
 package com.ril.common;
 
-import netscape.javascript.JSObject;
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Map;
 
 public class Environment {
-    private JSONObject env;
-//we need jason dependency to read
-    private Environment () throws FileNotFoundException {
-         env = new JSONObject(new FileReader("src/main/resources/env.json"));
+    private JSONObject envData;
+    public final String SEGMENT=System.getProperty("segment");
+    public final String ENVIRONMENT=System.getProperty("env");
+    private Environment () throws IOException {
+        envData = new JSONObject(IOUtils.toString(new FileInputStream("src/main/resources/env.json"),"UTF-8"));
     }
-    public static Environment envVariables;
-
+    public static Environment env;
     static {
         try {
-            envVariables = new Environment();
-        } catch (FileNotFoundException e) {
+            env = new Environment();
+        } catch (IOException e) {
             System.out.println("File not found");
         }
     }
-    public JSONObject getEnvData() {
-        return this.env;
+    public Map<String, Object> merchantData() {
+        return envData.getJSONObject(ENVIRONMENT).getJSONObject("merchant").getJSONObject(SEGMENT).toMap();
     }
-    public String getSegment(){
-        return System.getProperty("segment");
+    public static void main(String[] args) throws IOException {
+        JSONObject env = new JSONObject(IOUtils.toString(new FileInputStream("src/main/resources/env.json"),"UTF-8"));
+        Map<String,Object> envData=env.getJSONObject("sit").getJSONObject("merchant").getJSONObject("institution").toMap();
+        System.out.print(envData);
     }
+
 }

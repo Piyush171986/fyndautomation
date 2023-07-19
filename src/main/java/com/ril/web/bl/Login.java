@@ -7,7 +7,7 @@ import org.testng.Assert;
 
 public class Login {
 
-    public Login loginWithMerchant() {
+    public Login loginWithMerchant() throws InterruptedException {
         new LandingPage().clickOnLoginRegisterButton().clickOnSegment().clickOnContinueButton();
         new LoginPage().clickOnPasswordTab().enterUserName("9833612140").enterPassword("Test@1357").clickOnSignInButton();
         return this;
